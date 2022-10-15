@@ -6,27 +6,22 @@ import OweContainer from '../../fragments/view/OweComponent';
 import UpcomingRentComponent from '../../fragments/view/UpcomingRentComponent';
 import DebtListComponent from '../../fragments/view/DebtlListComponent';
   
-export type Props = {
-    houseId: string;
-    userId: string;
-};
+// export type Props = {
+//     houseId: string;
+//     userId: string;
+// };
 
-const RentScreen: React.FC<Props> = ({
-    houseId,
-    userId
-}
+const RentScreen: React.FC = (
 ) => {
     // for testing purposes, enter houseId, userId here (ex '777', 'Seven Abou') c:
     // we can also just pass in the properties when using rentscreen
-    houseId = '777';
-    userId = 'Seven Abou';
     return (
         <View style={styles.container}>
             <HeaderComponent screenName='Rent & Finance'/>
-            <UpcomingRentComponent houseId={houseId}/>
+            <UpcomingRentComponent houseId='777'/>
 
             <SafeAreaView style={styles.scrollContainer}>
-                <DebtListComponent userId={userId}/>
+                <DebtListComponent userId='Bob Jones'/>
             </SafeAreaView>
         </View>
   );

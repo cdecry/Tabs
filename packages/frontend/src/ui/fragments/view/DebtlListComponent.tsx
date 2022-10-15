@@ -31,7 +31,7 @@ const DebtListComponent: React.FC<Props> = ({
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
         refetch();
-        wait(2000).then(() => setRefreshing(false));
+        wait(1000).then(() => setRefreshing(false));
       }, []);
 
     if (loading) return <Text>Loading ...</Text>;
