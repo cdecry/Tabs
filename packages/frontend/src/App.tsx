@@ -8,11 +8,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import HomePage from "./ui/pages/view/homePage";
-
-
-
-
-
 import RentScreen from "./ui/pages/view/RentScreen";
 
 const client = new ApolloClient({
@@ -61,7 +56,7 @@ const App = () => (
         <Tab.Screen name="Home" component={FullInvView} options={{tabBarIcon: () => (<View>
           <MaterialCommunityIcons name="home" size={24} color={"#E6E6E6B0"}/>
         </View>)}}/>
-        <Tab.Screen name="Notifications" component={FullInvView} options={{tabBarIcon: () => (<View>
+        <Tab.Screen name="Notifications" component={RentScreen} options={{tabBarIcon: () => (<View>
           <MaterialCommunityIcons name="bell" size={24} color={"#E6E6E6B0"}/>
         </View>)}}/>
       </Tab.Navigator>
