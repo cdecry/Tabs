@@ -7,6 +7,10 @@ export type Props = {
     userId: string;
 };
 
+const wait = (timeout: number | undefined) => {
+    return new Promise(resolve => setTimeout(resolve, timeout));
+  }
+
 const GET_DEBTS =
 gql`
 query GetDebts($debtFrom: String!, $debtTo: String!) {
@@ -22,6 +26,13 @@ const DebtListComponent: React.FC<Props> = ({
     const { loading, data, refetch } = useQuery(GET_DEBTS, {
         variables: { debtTo: userId, debtFrom: userId},
     });
+
+    const [refreshing, setRefreshing] = React.useState(false);
+    const onRefresh = React.useCallback(() => {
+        setRefreshing(true);
+        refetch();
+        wait(2000).then(() => setRefreshing(false));
+      }, []);
 
     if (loading) return <Text>Loading ...</Text>;
 
@@ -46,6 +57,10 @@ const DebtListComponent: React.FC<Props> = ({
                     contentContainerStyle={{ paddingBottom: 20 }}
                     data={DATA as readonly any[] | null | undefined}
                     renderItem={({item}) => <OweContainer from={findNameDisplay(item.debtTo, item.debtFrom)} amount={item.amount} whoOwes={findWhoOwes(item.debtTo)}/> }
+                    refreshControl={<RefreshControl
+                        colors={["#2493A1", "#2493A1"]}
+                        refreshing={refreshing}
+                        onRefresh={onRefresh} />}
             />
         );
       })[0];
